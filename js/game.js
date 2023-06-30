@@ -21,7 +21,7 @@ function createBlocks() {
         oneBlockClicked = block;
         block.style.opacity = "0.35";
         let blockSound = new Audio("Menu_Select_01.wav");
-        // blockSound.play();
+        blockSound.play();
       } else if (!otherBlockClicked && oneBlockClicked !== block) {
         otherBlockClicked = block;
         block.style.opacity = "0.35";
