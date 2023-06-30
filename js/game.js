@@ -55,15 +55,7 @@ function createBlocks() {
     scoreBoard.style.color = "rgb(14, 52, 164)";
     scoreBoard.style.fontSize = "24px";
     scoreBoard.style.textAlign = "center";
-    scoreBoard.style.padding = "8px";
-    // margin: 10px;
-    // border-radius: 8px;
-    // background-color: #39ff14;
-    // font-weight: 36px;
-    // color: black;
-    // font-weight: bold;
-    // width: 10%;
-    // box-shadow: -2px 2px black;
+    
   };
 
   const checkWinner = () => {
@@ -80,10 +72,10 @@ function createBlocks() {
 
   const displayEndGameMessage = () => {
     let winnerSound = new Audio("Jingle_Win_00.wav");
-    //winnerSound.play();
+    winnerSound.play();
     if (document.querySelectorAll(".block").length === 0) {
-      //endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
-      endGameModalTitle.innerHTML = `You've cleared all Blocks! <span style="font-size: 24px; font-weight: bold;">You Win !</span> Your Score: ${score}`;
+      endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
+      //endGameModalTitle.innerHTML = `You've cleared all Blocks! <span style="font-size: 24px; font-weight: bold;">You Win !</span> Your Score: ${score}`;
       endGameModalTitle.style.color = "rgb(14, 52, 164)";
       endGameModalTitle.style.fontSize = "24px";
       endGameModalTitle.style.textAlign = "center";
