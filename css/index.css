@@ -67,7 +67,7 @@ div.bgimg {
     border:0px solid black;
   }
 
-  
+  /*class name .hidden for play game button*/
   .hidden {
     color: rgb(255, 255, 255);
     text-transform: capitalize;
