@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>COLOR CAPER</title>
+    <link href="../css/game.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="reset">
+     <a href="../index.html"><button id="quitBtn">Quit Game</button></a>
+    </div>
+    
+    <div id="score"><h3>Score: 0</h3></div>
+
+    <!-- <div class="allbuttons">
+    <div><button class="startbutton">Start game</div>
+      <div>
+      </div> -->
+    <div id="grid-box"></div>
+    <footer id="footer">
+        <p>
+          ©
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          | Crafted with <i class="fa-solid fa-heart"></i> by PK |
+        </p>
+        <a href="https://github.com/pankajajoshi" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <p>|</p>
+        <a href="https://www.linkedin.com/in/pearl-pk-31b684277/" target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </footer>
+    <div class="end-game-modal" id="endGameModal">
+        <p class="end-game-modal-title" id="endGameModalTitle"></p>
+        
+        <a href="game.html"
+        ><button class="restart-button" id="restartButton">Reset Again</button></a
+      >
+    </main>
+      
+      </div>
+    <script defer src="../js/game.js"></script>
+  </body>
+</html>
