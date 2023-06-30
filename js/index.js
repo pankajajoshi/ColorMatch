@@ -12,18 +12,14 @@ const typeText = (div, message, len) => {
 
 // start screen and writer
 let div = document.createElement("div");
-let welcomeContainer = document.getElementById("welcomeMessage");
-welcomeContainer.style.color = "royalblue";
-welcomeContainer.style.fontSize = "24px";
-welcomeContainer.style.textAlign = "center";
-welcomeContainer.style.padding = "8px";
+let welcomeContainer = document.getElementById("gameMessage");
 welcomeContainer.appendChild(div);
 typeText(
   div,
   `Welcome Player !!\n\nTo Play Game Match the Same Color Blocks \n\nWhen you clear all blocks YOU WIN!!!`,
   0
 );
-// commence battle!
+//play Game
 startBtn.addEventListener("click", () => {
   // redirect to game.html
   window.location.href = "html/game.html";
