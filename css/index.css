@@ -15,18 +15,25 @@ div.bgimg {
     align-items: center;
     text-align: center;
   }
-  .gameName,
-   .gameMessage {
+  .gameName
+    {
     font-size: 40px;
     font-weight: bold;
     color:blueviolet;
+  }
+  #gameMessage {
+    font-size: 16px;
+    justify-content: center;
+    text-align: center;
+    white-space: pre-wrap;
+    color: rgb(43, 0, 255);
   }
   .container {
     width: 500px;
     height: 500px;
     position: fixed;
     top: 25%;
-    left: 25%;
+    left: 36%;
   }
   body {
     overflow: hidden;
@@ -69,14 +76,7 @@ div.bgimg {
     border:0px solid black;
   }
 
-  #welcomeMessage {
-    font-size: 16px;
-   
-    justify-content: center;
-    text-align: center;
-    white-space: pre-wrap;
-    color: red;
-  }
+  
   .hidden {
     color: rgb(255, 255, 255);
     text-transform: capitalize;
