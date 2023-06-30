@@ -47,27 +47,8 @@ div.bgimg {
     text-align: center;
     white-space: pre-wrap;
   }
-  #main {
-    
-    flex-direction: cloumn;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 3em;
-    margin-bottom: 2em;
-    padding: 2em;
-    max-width: 50vw;
-    overflow: hidden;
-  }
-  /*header*/
-  
-  #header {
-    line-height: 1.2;
-    background-color: pink;
-    background-position: center;
-    width: 50%;
-    height: 50%;
-  }
-  
+ 
+ 
   .title {
     text-align: center;
   }
@@ -77,25 +58,7 @@ div.bgimg {
   }
 
   
-  .hidden {
-    color: rgb(255, 255, 255);
-    text-transform: capitalize;
-    font-size: 1.3em;
-    font-weight: 800;
-    cursor: pointer;
-    transform: perspective(1px) translateZ(0px);
-    transition-duration: 0.2s;
-    background-color: rgb(104, 66, 255);
-    -webkit-box-align: center;
-    align-items: center;
-   
-    -webkit-box-pack: center;
-    justify-content: center;
-    position: relative;
-    border-radius: 80px;
-    padding: 14px 30px;
-    gap: 5px;
-  }
+  
   
   button:active {
     background-color: yellow;
