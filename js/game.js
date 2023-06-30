@@ -1,10 +1,11 @@
-const colors = ["red", "blue", "green", "yellow"];
-let oneBlockClicked = null;
-let otherBlockClicked = null;
-let score = 0;
-const scoreBoard = document.getElementById("score");
-const endGameModal = document.getElementById("endGameModal");
-const endGameModalTitle = document.getElementById("endGameModalTitle");
+const colors = ["red", "blue", "green", "yellow"];// Just basic colors stated 
+let oneBlockClicked = null;// Keeps track of first block clicked, its null because no block was clicked.It has to be let because it will changed.
+let otherBlockClicked = null;//Keeps track of second block clicked, its null because no block was clicked. It has to be let because it will changed.
+let score = 0;//intializing and creating  score to 0
+const scoreBoard = document.getElementById("score");//creating scoreBoard obect to hold id Score(html element by it id)
+const endGameModal = document.getElementById("endGameModal");//creating endGameModal obect to hold value of endGameModal html element by it's id
+const endGameModalTitle = document.getElementById("endGameModalTitle");//creating endGameModalTitle to hold id of endGameModalTitle
+//creating create blocks
 function createBlocks() {
   const gridBox = document.getElementById("grid-box");
   if (!gridBox) {
