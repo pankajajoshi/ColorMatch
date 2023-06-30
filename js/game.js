@@ -20,7 +20,7 @@ function createBlocks() {
       if (!oneBlockClicked) {
         oneBlockClicked = block;
         block.style.opacity = "0.35";
-        let blockSound = new Audio("Menu_Select_01.wav");
+        let blockSound = new Audio("blockcrush.wav");
         blockSound.play();
       } else if (!otherBlockClicked && oneBlockClicked !== block) {
         otherBlockClicked = block;
@@ -71,7 +71,7 @@ function createBlocks() {
   };
 
   const displayEndGameMessage = () => {
-    let winnerSound = new Audio("Jingle_Win_00.wav");
+    let winnerSound = new Audio("WinnerMusic.wav");
     winnerSound.play();
     if (document.querySelectorAll(".block").length === 0) {
       endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
