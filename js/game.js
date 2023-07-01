@@ -1,10 +1,36 @@
-const colors = ["red", "blue", "green", "yellow"];// Just basic colors stated 
+const colors = ["red", "blue", "green", "yellow", "pink"];// Just basic colors stated 
 let oneBlockClicked = null;// Keeps track of first block clicked, its null because no block was clicked.It has to be let because it will changed.
 let otherBlockClicked = null;//Keeps track of second block clicked, its null because no block was clicked. It has to be let because it will changed.
 let score = 0;//intializing and creating  score to 0
 const scoreBoard = document.getElementById("score");//creating scoreBoard obect to hold id Score(html element by it id)
 const endGameModal = document.getElementById("endGameModal");//creating endGameModal obect to hold value of endGameModal html element by it's id
 const endGameModalTitle = document.getElementById("endGameModalTitle");//creating endGameModalTitle to hold id of endGameModalTitle
+
+function createBlocksInGrid(){
+    const gridBox = document.getElementById("grid-box");
+    if (!gridBox) {
+      console.error("Cannot find element with ID 'grid-box'");
+      return;
+    }
+for (let i = 0;i < 5; i++){
+    for(let j = 0;j < 5; j++){
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const block = document.createElement("div");
+        block.id=randomColor+"_"+i+"_"+j;
+        block.classList.add("block", randomColor, "falling"); // block yellow falling
+        // add click event event listener
+        block.addEventListener("click", blockClicked);
+        gridBox.appendChild(block);
+    }
+}
+
+} // end create blocks in array
+
+function blockClicked(eventObj) {
+    eventObj.preventDefault();
+    console.log('block clicked', eventObj.target)
+}
+
 //creating create blocks
 function createBlocks() {
   const gridBox = document.getElementById("grid-box");
@@ -13,10 +39,12 @@ function createBlocks() {
     return;
   }
 
+  createBlocksInGrid();
+
   for (let i = 0; i < 30; i++) {
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     const block = document.createElement("div");
-    block.classList.add("block", randomColor, "falling");
+    block.classList.add("block", randomColor, "falling"); // block yellow falling
     block.addEventListener("click", () => {
       if (!oneBlockClicked) {
         oneBlockClicked = block;
@@ -31,7 +59,8 @@ function createBlocks() {
             `.block.${oneBlockClicked.classList[1]}`
           );
           blocksToRemove.forEach((blockToRemove) => {
-            blockToRemove.remove();
+            console.log(blockToRemove);
+           // blockToRemove.remove();
             score += 100;
           });
           oneBlockClicked = null;
@@ -48,7 +77,7 @@ function createBlocks() {
         }
       }
     });
-    gridBox.appendChild(block);
+   // gridBox.appendChild(block);
   }
 
   const updateScore = () => {

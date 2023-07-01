@@ -86,6 +86,11 @@
 .yellow {
   background-color: yellow;
 }
+
+.pink {
+    background-color: pink;
+  }
+
 .falling {
   animation-name: fall;
   animation-duration: 3s;
