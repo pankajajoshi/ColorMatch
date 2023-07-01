@@ -18,7 +18,10 @@ for (let i = 0;i < 5; i++){
         const block = document.createElement("div");
         block.id=randomColor+"_"+i+"_"+j;
         block.classList.add("block", randomColor, "falling"); // block yellow falling
-        // add click event event listener
+        // add click event event listener with following data for future removal
+        block.color=randomColor;
+        block.row=i;
+        block.col=j;
         block.addEventListener("click", blockClicked);
         gridBox.appendChild(block);
     }
@@ -28,7 +31,7 @@ for (let i = 0;i < 5; i++){
 
 function blockClicked(eventObj) {
     eventObj.preventDefault();
-    console.log('block clicked', eventObj.target)
+    console.log('block clicked', eventObj.currentTarget.color, eventObj.currentTarget.row, eventObj.currentTarget.col);
 }
 
 //creating create blocks
