@@ -1,4 +1,4 @@
-const colors = ["red", "blue", "green", "yellow", "pink"];// Just basic colors stated 
+const colors = ["red", "blue", "green", "yellow", "purple"];// Just basic colors stated 
 let oneBlockClicked = null;// Keeps track of first block clicked, its null because no block was clicked.It has to be let because it will changed.
 let otherBlockClicked = null;//Keeps track of second block clicked, its null because no block was clicked. It has to be let because it will changed.
 let score = 0;//intializing and creating  score to 0
@@ -13,18 +13,23 @@ const updateScore = () => {
     
   };
   const checkWinner = () => {
-    if (document.querySelectorAll(".block").length === 0) {
+    console.log('score is: ', score);
+    if(score >= 1500) { 
+        console.log('score is >=1500 ', score);
+   // if (document.querySelectorAll(".block").length === 0) {
       openEndGameModal();
       displayEndGameMessage();
-      updateScore();
+      //updateScore();
     }
   };
   
   const openEndGameModal = () => {
+    console.log('openEndGameModal');
     endGameModal.classList.add("active");
   };
 
   const displayEndGameMessage = () => {
+    console.log('displayEndGameMessage');
     let winnerSound = new Audio("WinnerMusic.wav");
     winnerSound.play();
     if (document.querySelectorAll(".block").length === 0) {
@@ -33,8 +38,8 @@ const updateScore = () => {
       endGameModalTitle.style.color = "rgb(14, 52, 164)";
       endGameModalTitle.style.fontSize = "24px";
       endGameModalTitle.style.textAlign = "center";
-    } else {
-      endGameModalTitle.textContent = `Keep Breaking and earn your Score `;
+    } else if(score >= 1500) {
+      endGameModalTitle.textContent = `Awesome! you earned 1500 or more points, on to next level!! `;
       endGameModalTitle.style.color = "rgb(14, 52, 164)";
       endGameModalTitle.style.fontSize = "24px";
       endGameModalTitle.style.textAlign = "center";
@@ -86,36 +91,7 @@ function renderBlocks(firstTime) {
 function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
-/*
-function createBlocksInGrid1(){
-    const gridBox = document.getElementById("grid-box");
-    if (!gridBox) {
-      console.error("Cannot find element with ID 'grid-box'");
-      return;
-    }
 
-    for (let i = 0;i < m; i++){
-        for(let j = 0;j < n; j++){
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            box[i][j]=randomColor;
-            const block = document.createElement("div");
-            block.id=i+"_"+j;
-            block.classList.add("block", randomColor, "falling"); // block yellow falling
-            // add click event event listener with following data for future removal
-            block.color=randomColor;
-            block.row=i;
-            block.col=j;
-            block.addEventListener("click", blockClicked);
-
-            // append the block to grid
-            gridBox.appendChild(block);
-        }
-    }
-console.log(gridBox);
-console.log(box);
-clearFallingClass();
-} // end create blocks in array
-*/
 function blockClicked(eventObj) {
     eventObj.preventDefault();
     console.log('block clicked', eventObj.currentTarget.color, eventObj.currentTarget.row, eventObj.currentTarget.col);
@@ -181,8 +157,6 @@ while (blocksToFill > 0) {
     }
     blocksToFill--;
   }
-
-
 }
 
 function removeShakingBlocks() {
