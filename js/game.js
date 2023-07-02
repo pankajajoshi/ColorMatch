@@ -49,7 +49,45 @@ for (var i = 0; i < m; i++) {
   box[i] = [];
 }
 
+let blocksToFill=0;
+
 function createBlocksInGrid(){
+    for (var x = 0; x < m; x++) {
+        box.push([]);
+        for (var y = 0; y < n; y++) {
+          box[x].push(getRandomColor());
+        }
+      }
+      renderBlocks(true);
+      clearFallingClass();
+}
+
+function renderBlocks(firstTime) {
+    const gridBox = document.getElementById("grid-box");
+    gridBox.innerHTML='';
+    for(var x=0;x<m;x++){
+        for(var y=0;y<n;y++){
+            const block = document.createElement("div");
+            block.id=x+"_"+y;
+            block.classList.add("block", box[x][y]/*, "falling"*/); // block yellow falling
+            if(firstTime) block.classList.add("falling");
+            // add click event event listener with following data for future removal
+            block.color=box[x][y];
+            block.row=x;
+            block.col=y;
+            block.addEventListener("click", blockClicked);
+
+            // append the block to grid
+            gridBox.appendChild(block);
+        }
+    }
+}
+
+function getRandomColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+/*
+function createBlocksInGrid1(){
     const gridBox = document.getElementById("grid-box");
     if (!gridBox) {
       console.error("Cannot find element with ID 'grid-box'");
@@ -77,7 +115,7 @@ console.log(gridBox);
 console.log(box);
 clearFallingClass();
 } // end create blocks in array
-
+*/
 function blockClicked(eventObj) {
     eventObj.preventDefault();
     console.log('block clicked', eventObj.currentTarget.color, eventObj.currentTarget.row, eventObj.currentTarget.col);
@@ -89,7 +127,7 @@ function blockClicked(eventObj) {
     assignShakeStyleToBoxes(eventObj.currentTarget.color, sameColorNeighbors);
 }
 
-function slideBlocks() {
+function slideBlocks1() {
    // switch bottom white blocks with top colored blocks -- use columns only, rows remain as is
    var elems = document.querySelectorAll(".white");
    console.log(elems, elems.length);
@@ -106,24 +144,63 @@ function slideBlocks() {
         topEle.className=el.className;
         el.className = temp;
         // remove shaking
-        topEle.classList.remove("shaking");
-        el.classList.remove("shaking");
+       // topEle.classList.remove("shaking");
+      //  el.classList.remove("shaking");
     }
    });
-
+   clearShakingClass();
 }
 
+function slideBlocks() {
+console.log('blocks to fill ', blocksToFill);
+
+while (blocksToFill > 0) {
+    for (var x = 0; x < m; x++) {
+      for (var y = 0; y < n - 1; y++) {
+        // check below for a hole
+        if (box[y][x]!= 'white' && box[y + 1][x] == 'white') {
+          var itemsToShiftDown = [];
+          var idx = y;
+          while (idx >= 0 && box[idx][x]) {
+            // move up the column, adding colors to array
+            var color = box[idx][x];
+            itemsToShiftDown.push(color);
+            box[idx][x] = 'white';
+            idx--;
+          }
+          // start at the hole
+          idx = y + 1;
+          // move back up the column, assigning colors to the open spaces
+          for (var i = 0; i < itemsToShiftDown.length; i++) {
+            box[idx][x] = itemsToShiftDown[i];
+            idx--;
+          }
+          
+        }
+      }
+    }
+    blocksToFill--;
+  }
+
+
+}
 
 function removeShakingBlocks() {
     var elems = document.querySelectorAll(".shaking");
     console.log('removeShakingBlocks ', elems, elems.length);
     let count = 0;
     [].forEach.call(elems, function (el) {
-        el.className='';
-        el.classList.add("white");
+        //el.className='';
+       // el.classList.add("white");
+       // el.color='white';
+        box[el.row][el.col]='white';
+        blocksToFill++;
         count++;
     });
+ 
+
     slideBlocks();
+    renderBlocks(false);
     score += count*100;
     updateScore();
     checkWinner();
@@ -142,6 +219,7 @@ function assignShakeStyleToBoxes(color, arr){
 }
 
 function addShakingClassToSelectedElements(arr, color) {
+    if(arr.length >1)
     for (let i = 0; i < arr.length; i++) {
         console.log(color + "_" + arr[i][0] + '_' + arr[i][1]);
         let ele = document.getElementById( arr[i][0] + '_' + arr[i][1]);
