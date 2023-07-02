@@ -210,7 +210,7 @@ function hasClickedElseWhere(elems, evtObj){
     if(elems && elems.length>0) {
         [].forEach.call(elems, function (el) {
             console.log('el: ',el.color, '', el.row, '', el.col);
-            if(evtObj.color != el.color || el.row != evtObj.row || el.col != evtObj.col){
+            if(evtObj.color != el.color){
                 retVal = true;
             }
         });
