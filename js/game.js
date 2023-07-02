@@ -37,12 +37,16 @@ const updateScore = () => {
 
   const displayEndGameMessage = () => {
     console.log('displayEndGameMessage');
-    let winnerSound = new Audio("WinnerMusic.wav");
+    let winnerSound = new Audio("../winsound.wav");
+    winnerSound.volume=0.2;
     winnerSound.play();
+    
     if (document.querySelectorAll(".block").length === 0) {
       endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
     } else if(score >= 1500) {
+        
       endGameModalTitle.textContent = `Awesome! you earned 1500 or more points, on to next level!! `;
+     
     } else {
         // this no more matches available to play further, end the game
         endGameModalTitle.textContent = `There are no matching blocks! Game over! `;
@@ -128,11 +132,15 @@ function getRandomColor() {
 }
 
 function blockClicked(eventObj) {
+    let blockCrush=new Audio("../blockmatchsound.wav");
+    blockCrush.volume=0.2;
+    blockCrush.play();
     eventObj.preventDefault();
     console.log('block clicked', eventObj.currentTarget.color, eventObj.currentTarget.row, eventObj.currentTarget.col);
     // if the blocks already have shaking, click on it should remove those blocks
+    
     removeShakingBlocks();
-    let sameColorNeighbors=[];
+   let sameColorNeighbors=[];
     populateSameColorNeighbors(eventObj.currentTarget.color, eventObj.currentTarget.row, eventObj.currentTarget.col, sameColorNeighbors);
     console.log(sameColorNeighbors);
     assignShakeStyleToBoxes(eventObj.currentTarget.color, sameColorNeighbors);
@@ -181,6 +189,9 @@ function removeShakingBlocks() {
         box[el.row][el.col]='white';
         blocksToFill++;
         count++;
+        let blockCrush=new Audio("../matchbreak.wav");
+    blockCrush.volume=0.2;
+    blockCrush.play();
     });
  
 
@@ -193,6 +204,7 @@ function removeShakingBlocks() {
 
 function clearFallingClass(){
     clearClass("falling");
+
 }
 
 function assignShakeStyleToBoxes(color, arr){
@@ -234,11 +246,38 @@ function populateSameColorNeighbors(color, row, col, arr) {
        return;
     }
     arr.push([row, col]);
-    
-    populateSameColorNeighbors(color, row+1, col, arr);
-    populateSameColorNeighbors(color, row, col+1, arr);
-    //populateSameColorNeighbors(color, row-1, col, arr);
-    //populateSameColorNeighbors(color, row, col-1, arr);
-}
+    //visited[row][col] = true;
 
+ // if(arr.length === totalSameColorBlocks) return; // Exit condition
+
+  populateSameColorNeighbors(color, row+1, col, arr );
+  populateSameColorNeighbors(color, row, col+1, arr);
+//   populateSameColorNeighbors(color, row-1, col, arr);
+//   populateSameColorNeighbors(color, row, col-1, arr);
+
+    
+    // // populateSameColorNeighbors(color, row+1, col, arr,visited);
+    // // populateSameColorNeighbors(color, row, col+1, arr,visited);
+    // // populateSameColorNeighbors(color, row-1, col, arr,visited);
+    // // populateSameColorNeighbors(color, row, col-1, arr,visited);
+    // var totalSameColorBlocks = 0;
+    // for(var i = 0; i < 5; i++) {
+    //   for(var j = 0; j < 5; j++) {
+    //     if(box[i][j] === color) {
+    //       totalSameColorBlocks++;
+    //     }
+    //   }
+    // }
+    
+    // var arr = [];
+    // var visited = [];
+    // for(var i = 0; i < 5; i++) {
+    //   visited[i] = [];
+    //   for(var j = 0; j < 5; j++) {
+    //     visited[i][j] = false;
+    //   }
+    // }
+    // populateSameColorNeighbors(color, row, col, arr, visited);
+    // console.log('Same color blocks:', arr);
+}
 createBlocksInGrid();
