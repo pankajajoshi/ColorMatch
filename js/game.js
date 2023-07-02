@@ -5,6 +5,12 @@ let score = 0;//intializing and creating  score to 0
 const scoreBoard = document.getElementById("score");//creating scoreBoard obect to hold id Score(html element by it id)
 const endGameModal = document.getElementById("endGameModal");//creating endGameModal obect to hold value of endGameModal html element by it's id
 const endGameModalTitle = document.getElementById("endGameModalTitle");//creating endGameModalTitle to hold id of endGameModalTitle
+const m = 5;
+const  n = 5; 
+let box = [];
+for (var i = 0; i < m; i++) {
+  box[i] = [];
+}
 
 function createBlocksInGrid(){
     const gridBox = document.getElementById("grid-box");
@@ -12,26 +18,85 @@ function createBlocksInGrid(){
       console.error("Cannot find element with ID 'grid-box'");
       return;
     }
-for (let i = 0;i < 5; i++){
-    for(let j = 0;j < 5; j++){
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        const block = document.createElement("div");
-        block.id=randomColor+"_"+i+"_"+j;
-        block.classList.add("block", randomColor, "falling"); // block yellow falling
-        // add click event event listener with following data for future removal
-        block.color=randomColor;
-        block.row=i;
-        block.col=j;
-        block.addEventListener("click", blockClicked);
-        gridBox.appendChild(block);
-    }
-}
 
+    for (let i = 0;i < m; i++){
+        for(let j = 0;j < n; j++){
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            box[i][j]=randomColor;
+            const block = document.createElement("div");
+            block.id=randomColor+"_"+i+"_"+j;
+            block.classList.add("block", randomColor, "falling"); // block yellow falling
+            // add click event event listener with following data for future removal
+            block.color=randomColor;
+            block.row=i;
+            block.col=j;
+            block.addEventListener("click", blockClicked);
+
+            // append the block to grid
+            gridBox.appendChild(block);
+        }
+    }
+console.log(gridBox);
+console.log(box);
+clearFallingClass();
 } // end create blocks in array
 
 function blockClicked(eventObj) {
     eventObj.preventDefault();
     console.log('block clicked', eventObj.currentTarget.color, eventObj.currentTarget.row, eventObj.currentTarget.col);
+    // if the blocks already have shaking, click on it should remove those blocks
+    removeShakingBlocks();
+    let sameColorNeighbors=[];
+    populateSameColorNeighbors(eventObj.currentTarget.color, eventObj.currentTarget.row, eventObj.currentTarget.col, sameColorNeighbors);
+    console.log(sameColorNeighbors);
+    assignShakeStyleToBoxes(eventObj.currentTarget.color, sameColorNeighbors);
+}
+
+function clearFallingClass(){
+    clearClass("falling");
+}
+
+function assignShakeStyleToBoxes(color, arr){
+    // remove all shaking class
+    clearShakingClass();
+    // add shaking
+    addShakingClassToSelectedElements(arr, color);
+
+}
+
+function addShakingClassToSelectedElements(arr, color) {
+    for (let i = 0; i < arr.length; i++) {
+        console.log(color + "_" + arr[i][0] + '_' + arr[i][1]);
+        let ele = document.getElementById(color + "_" + arr[i][0] + '_' + arr[i][1]);
+        ele.classList.add("shaking");
+    }
+}
+
+function clearShakingClass() {
+    clearClass('shaking');
+}
+
+function clearClass(className) {
+    var elems = document.querySelectorAll("."+className);
+
+    [].forEach.call(elems, function (el) {
+        el.classList.remove(className);
+    });
+}
+
+function populateSameColorNeighbors(color, row, col, arr) {
+    console.log('box[row][col]', box[row][col], ' finding color: ', color, ' found at loc: ', row, col);
+    if(row>=5 || col>=5 || row<0 || col<0) return false;
+    if(box[row][col] != color){
+        console.log('no matching color ', color, 'at location: ', row, col);
+       return false;
+    }
+    arr.push([row, col]);
+    
+    populateSameColorNeighbors(color, row+1, col, arr);
+    populateSameColorNeighbors(color, row, col+1, arr);
+    //populateSameColorNeighbors(color, row-1, col, arr);
+   // populateSameColorNeighbors(color, row, col-1, arr);
 }
 
 //creating create blocks
