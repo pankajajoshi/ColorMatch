@@ -52,6 +52,15 @@ function blockClicked(eventObj) {
     assignShakeStyleToBoxes(eventObj.currentTarget.color, sameColorNeighbors);
 }
 
+function removeShakingBlocks() {
+    var elems = document.querySelectorAll(".shaking");
+
+    [].forEach.call(elems, function (el) {
+        el.className='';
+        el.classList.add("white");
+    });
+}
+
 function clearFallingClass(){
     clearClass("falling");
 }
@@ -68,7 +77,9 @@ function addShakingClassToSelectedElements(arr, color) {
     for (let i = 0; i < arr.length; i++) {
         console.log(color + "_" + arr[i][0] + '_' + arr[i][1]);
         let ele = document.getElementById(color + "_" + arr[i][0] + '_' + arr[i][1]);
-        ele.classList.add("shaking");
+        if(ele.className != 'white') {
+            ele.classList.add("shaking");
+        }
     }
 }
 

@@ -90,6 +90,9 @@
 .pink {
     background-color: pink;
   }
+.white {
+    background-color: #f5f5f5;
+}
 
 .falling {
   animation-name: fall;
