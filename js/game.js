@@ -32,7 +32,7 @@ function createBlocksInGrid(){
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
             box[i][j]=randomColor;
             const block = document.createElement("div");
-            block.id=randomColor+"_"+i+"_"+j;
+            block.id=i+"_"+j;
             block.classList.add("block", randomColor, "falling"); // block yellow falling
             // add click event event listener with following data for future removal
             block.color=randomColor;
@@ -60,15 +60,41 @@ function blockClicked(eventObj) {
     assignShakeStyleToBoxes(eventObj.currentTarget.color, sameColorNeighbors);
 }
 
+function slideBlocks() {
+   // switch bottom white blocks with top colored blocks -- use columns only, rows remain as is
+   var elems = document.querySelectorAll(".white");
+   console.log(elems, elems.length);
+   [].forEach.call(elems, function (el) {
+    let currCoords = el.id.split("_"); // id="0_0" -> ["0", "0"]
+    let r = parseInt(currCoords[0]);
+    let c = parseInt(currCoords[1]);
+    r=r-1;
+    if(r>-1){
+        console.log(r+"_"+c);
+        let topEle = document.getElementById(r+"_"+c);
+        console.log(topEle);
+        let temp = topEle.className;
+        topEle.className=el.className;
+        el.className = temp;
+        // remove shaking
+        topEle.classList.remove("shaking");
+        el.classList.remove("shaking");
+    }
+   });
+
+}
+
+
 function removeShakingBlocks() {
     var elems = document.querySelectorAll(".shaking");
-
+    console.log('removeShakingBlocks ', elems, elems.length);
     let count = 0;
     [].forEach.call(elems, function (el) {
         el.className='';
         el.classList.add("white");
         count++;
     });
+    slideBlocks();
     score += count*100;
     updateScore();
 }
@@ -88,7 +114,7 @@ function assignShakeStyleToBoxes(color, arr){
 function addShakingClassToSelectedElements(arr, color) {
     for (let i = 0; i < arr.length; i++) {
         console.log(color + "_" + arr[i][0] + '_' + arr[i][1]);
-        let ele = document.getElementById(color + "_" + arr[i][0] + '_' + arr[i][1]);
+        let ele = document.getElementById( arr[i][0] + '_' + arr[i][1]);
         if(ele.className != 'white') {
             ele.classList.add("shaking");
         }
