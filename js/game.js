@@ -12,6 +12,35 @@ const updateScore = () => {
     scoreBoard.style.textAlign = "center";
     
   };
+  const checkWinner = () => {
+    if (document.querySelectorAll(".block").length === 0) {
+      openEndGameModal();
+      displayEndGameMessage();
+      updateScore();
+    }
+  };
+  
+  const openEndGameModal = () => {
+    endGameModal.classList.add("active");
+  };
+
+  const displayEndGameMessage = () => {
+    let winnerSound = new Audio("WinnerMusic.wav");
+    winnerSound.play();
+    if (document.querySelectorAll(".block").length === 0) {
+      endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
+      //endGameModalTitle.innerHTML = `You've cleared all Blocks! <span style="font-size: 24px; font-weight: bold;">You Win !</span> Your Score: ${score}`;
+      endGameModalTitle.style.color = "rgb(14, 52, 164)";
+      endGameModalTitle.style.fontSize = "24px";
+      endGameModalTitle.style.textAlign = "center";
+    } else {
+      endGameModalTitle.textContent = `Keep Breaking and earn your Score `;
+      endGameModalTitle.style.color = "rgb(14, 52, 164)";
+      endGameModalTitle.style.fontSize = "24px";
+      endGameModalTitle.style.textAlign = "center";
+    }
+  };
+
 
 const m = 5;
 const  n = 5; 
@@ -97,6 +126,7 @@ function removeShakingBlocks() {
     slideBlocks();
     score += count*100;
     updateScore();
+    checkWinner();
 }
 
 function clearFallingClass(){
@@ -198,35 +228,10 @@ function createBlocks() {
   }
 
  
-  const checkWinner = () => {
-    if (document.querySelectorAll(".block").length === 0) {
-      openEndGameModal();
-      displayEndGameMessage();
-      updateScore();
-    }
-  };
 
-  const openEndGameModal = () => {
-    endGameModal.classList.add("active");
-  };
 
-  const displayEndGameMessage = () => {
-    let winnerSound = new Audio("WinnerMusic.wav");
-    winnerSound.play();
-    if (document.querySelectorAll(".block").length === 0) {
-      endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
-      //endGameModalTitle.innerHTML = `You've cleared all Blocks! <span style="font-size: 24px; font-weight: bold;">You Win !</span> Your Score: ${score}`;
-      endGameModalTitle.style.color = "rgb(14, 52, 164)";
-      endGameModalTitle.style.fontSize = "24px";
-      endGameModalTitle.style.textAlign = "center";
-    } else {
-      endGameModalTitle.textContent = `Keep Breaking and earn your Score `;
-      endGameModalTitle.style.color = "rgb(14, 52, 164)";
-      endGameModalTitle.style.fontSize = "24px";
-      endGameModalTitle.style.textAlign = "center";
-    }
-  };
+
   //addRestartListener();
 }
 
-createBlocks();
+createBlocksInGrid();
