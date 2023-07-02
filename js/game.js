@@ -239,45 +239,30 @@ function clearClass(className) {
 }
 
 function populateSameColorNeighbors(color, row, col, arr) {
-    console.log('box[row][col]', box[row][col], ' finding color: ', color, ' found at loc: ', row, col);
+    // check if arr already has the x,y coordinates, do not visit again.
+    if(arr.length >0) {
+        for (let i = 0; i < arr.length; i++) {
+            console.log( arr[i][0] + '_' + arr[i][1]);
+            if(arr[i][0] == row && arr[i][1] == col){
+                return;
+            }
+        }
+    }
+
     if(row>=5 || col>=5 || row<0 || col<0) return;
     if(box[row][col] != color){
         console.log('no matching color ', color, 'at location: ', row, col);
        return;
     }
+    console.log('box[row][col]', box[row][col], ' finding color: ', color, ' found at loc: ', row, col);
+
+   // add the matching neighbor to array.
     arr.push([row, col]);
-    //visited[row][col] = true;
 
- // if(arr.length === totalSameColorBlocks) return; // Exit condition
+   populateSameColorNeighbors(color, row+1, col, arr );
+   populateSameColorNeighbors(color, row, col+1, arr);
+   populateSameColorNeighbors(color, row-1, col, arr);
+   populateSameColorNeighbors(color, row, col-1, arr);
 
-  populateSameColorNeighbors(color, row+1, col, arr );
-  populateSameColorNeighbors(color, row, col+1, arr);
-//   populateSameColorNeighbors(color, row-1, col, arr);
-//   populateSameColorNeighbors(color, row, col-1, arr);
-
-    
-    // // populateSameColorNeighbors(color, row+1, col, arr,visited);
-    // // populateSameColorNeighbors(color, row, col+1, arr,visited);
-    // // populateSameColorNeighbors(color, row-1, col, arr,visited);
-    // // populateSameColorNeighbors(color, row, col-1, arr,visited);
-    // var totalSameColorBlocks = 0;
-    // for(var i = 0; i < 5; i++) {
-    //   for(var j = 0; j < 5; j++) {
-    //     if(box[i][j] === color) {
-    //       totalSameColorBlocks++;
-    //     }
-    //   }
-    // }
-    
-    // var arr = [];
-    // var visited = [];
-    // for(var i = 0; i < 5; i++) {
-    //   visited[i] = [];
-    //   for(var j = 0; j < 5; j++) {
-    //     visited[i][j] = false;
-    //   }
-    // }
-    // populateSameColorNeighbors(color, row, col, arr, visited);
-    // console.log('Same color blocks:', arr);
 }
 createBlocksInGrid();
