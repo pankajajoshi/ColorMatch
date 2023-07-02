@@ -14,14 +14,14 @@ const updateScore = () => {
   };
   const checkWinner = () => {
     console.log('score is: ', score);
-    if(score >= 1500) { 
-        console.log('score is >=1500 ', score);
+    if(score >= 3000) { 
+        console.log('score is >=3000 ', score);
    // if (document.querySelectorAll(".block").length === 0) {
       openEndGameModal();
       displayEndGameMessage();
       //updateScore();
     } else {
-        console.log('score is less than 1500, next check if user can play further');
+        console.log('score is less than 3000, next check if user can play further');
         //check if any same blocks are remaining, if not show game over
         if(!areThereAnyMatchingBlocks()) {
            openEndGameModal();
@@ -43,9 +43,9 @@ const updateScore = () => {
     
     if (document.querySelectorAll(".block").length === 0) {
       endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
-    } else if(score >= 1500) {
+    } else if(score >= 3000) {
         
-      endGameModalTitle.textContent = `Awesome! you earned 1500 or more points, on to next level!! `;
+      endGameModalTitle.textContent = `Awesome! you earned it! Now, on to next level!! `;
      
     } else {
         // this no more matches available to play further, end the game
@@ -57,8 +57,8 @@ const updateScore = () => {
   };
 
 
-const m = 5;
-const  n = 5; 
+const m = 7;
+const  n = 7; 
 let box = [];
 for (var i = 0; i < m; i++) {
   box[i] = [];
@@ -109,6 +109,7 @@ function createBlocksInGrid(){
 function renderBlocks(firstTime) {
     const gridBox = document.getElementById("grid-box");
     gridBox.innerHTML='';
+    gridBox.style.gridTemplateColumns="repeat("+m+",1fr)";
     for(var x=0;x<m;x++){
         for(var y=0;y<n;y++){
             const block = document.createElement("div");
@@ -204,7 +205,6 @@ function removeShakingBlocks() {
 
 function clearFallingClass(){
     clearClass("falling");
-
 }
 
 function assignShakeStyleToBoxes(color, arr){
@@ -249,7 +249,7 @@ function populateSameColorNeighbors(color, row, col, arr) {
         }
     }
 
-    if(row>=5 || col>=5 || row<0 || col<0) return;
+    if(row>=m || col>=n || row<0 || col<0) return;
     if(box[row][col] != color){
         console.log('no matching color ', color, 'at location: ', row, col);
        return;
