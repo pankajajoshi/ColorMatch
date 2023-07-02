@@ -139,8 +139,8 @@ function blockClicked(eventObj) {
     eventObj.preventDefault();
     console.log('block clicked', eventObj.currentTarget.color, eventObj.currentTarget.row, eventObj.currentTarget.col);
     // if the blocks already have shaking, click on it should remove those blocks
-    
-    removeShakingBlocks();
+    // but, if clicked else where - stop shaking and shake other selected blocks
+    removeShakingBlocks(eventObj.currentTarget);
    let sameColorNeighbors=[];
     populateSameColorNeighbors(eventObj.currentTarget.color, eventObj.currentTarget.row, eventObj.currentTarget.col, sameColorNeighbors);
     console.log(sameColorNeighbors);
@@ -179,28 +179,43 @@ while (blocksToFill > 0) {
   }
 }
 
-function removeShakingBlocks() {
+function removeShakingBlocks(evtObj) {
     var elems = document.querySelectorAll(".shaking");
-    console.log('removeShakingBlocks ', elems, elems.length);
-    let count = 0;
-    [].forEach.call(elems, function (el) {
-        //el.className='';
-       // el.classList.add("white");
-       // el.color='white';
-        box[el.row][el.col]='white';
-        blocksToFill++;
-        count++;
-        let blockCrush=new Audio("../matchbreak.wav");
-    blockCrush.volume=0.2;
-    blockCrush.play();
-    });
- 
+    if(!hasClickedElseWhere(elems, evtObj)){
+        console.log('removeShakingBlocks ', elems, elems.length);
+        let count = 0;
+        [].forEach.call(elems, function (el) {
+            box[el.row][el.col]='white';
+            blocksToFill++;
+            count++;
+            let blockCrush=new Audio("../matchbreak.wav");
+            blockCrush.volume=0.2;
+            blockCrush.play();
+        });
+    
 
-    slideBlocks();
-    renderBlocks(false);
-    score += count*100;
-    updateScore();
-    checkWinner();
+        slideBlocks();
+        renderBlocks(false);
+        score += count*100;
+        updateScore();
+        checkWinner();
+    }else{
+        console.log('clicked else where')
+    }
+}
+
+function hasClickedElseWhere(elems, evtObj){
+    console.log('evtObj: ',evtObj.color, '', evtObj.row, '', evtObj.col);
+    var retVal = false;
+    if(elems && elems.length>0) {
+        [].forEach.call(elems, function (el) {
+            console.log('el: ',el.color, '', el.row, '', el.col);
+            if(evtObj.color != el.color || el.row != evtObj.row || el.col != evtObj.col){
+                retVal = true;
+            }
+        });
+    }
+    return retVal;
 }
 
 function clearFallingClass(){
