@@ -5,6 +5,14 @@ let score = 0;//intializing and creating  score to 0
 const scoreBoard = document.getElementById("score");//creating scoreBoard obect to hold id Score(html element by it id)
 const endGameModal = document.getElementById("endGameModal");//creating endGameModal obect to hold value of endGameModal html element by it's id
 const endGameModalTitle = document.getElementById("endGameModalTitle");//creating endGameModalTitle to hold id of endGameModalTitle
+const updateScore = () => {
+    scoreBoard.textContent = `Score: ${score}`;
+    scoreBoard.style.color = "rgb(14, 52, 164)";
+    scoreBoard.style.fontSize = "24px";
+    scoreBoard.style.textAlign = "center";
+    
+  };
+
 const m = 5;
 const  n = 5; 
 let box = [];
@@ -55,10 +63,14 @@ function blockClicked(eventObj) {
 function removeShakingBlocks() {
     var elems = document.querySelectorAll(".shaking");
 
+    let count = 0;
     [].forEach.call(elems, function (el) {
         el.className='';
         el.classList.add("white");
+        count++;
     });
+    score += count*100;
+    updateScore();
 }
 
 function clearFallingClass(){
@@ -159,14 +171,7 @@ function createBlocks() {
    // gridBox.appendChild(block);
   }
 
-  const updateScore = () => {
-    scoreBoard.textContent = `Score: ${score}`;
-    scoreBoard.style.color = "rgb(14, 52, 164)";
-    scoreBoard.style.fontSize = "24px";
-    scoreBoard.style.textAlign = "center";
-    
-  };
-
+ 
   const checkWinner = () => {
     if (document.querySelectorAll(".block").length === 0) {
       openEndGameModal();
