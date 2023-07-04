@@ -54,6 +54,7 @@ const updateScore = () => {
     endGameModalTitle.style.color = "rgb(14, 52, 164)";
     endGameModalTitle.style.fontSize = "24px";
     endGameModalTitle.style.textAlign = "center";
+    
   };
 
 
