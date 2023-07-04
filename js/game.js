@@ -103,7 +103,7 @@ function createBlocksInGrid(){
         }
       }
       renderBlocks(true);
-      clearFallingClass();
+    // clearFallingClass();
 }
 
 function renderBlocks(firstTime) {
@@ -114,7 +114,7 @@ function renderBlocks(firstTime) {
         for(var y=0;y<n;y++){
             const block = document.createElement("div");
             block.id=x+"_"+y;
-            block.classList.add("block", box[x][y]/*, "falling"*/); // block yellow falling
+            block.classList.add("block", box[x][y]); // block yellow falling
             if(firstTime) block.classList.add("falling");
             // add click event event listener with following data for future removal
             block.color=box[x][y];
