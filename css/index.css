@@ -33,6 +33,7 @@ div.bgimg {
     color: rgb(185, 239, 226);
     text-align: center;
     position: fixed;
+    display:inline-flex
   }
   #gameBtn {
     

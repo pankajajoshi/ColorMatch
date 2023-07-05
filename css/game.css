@@ -12,10 +12,13 @@
 #grid-box {
   display: inline-grid;
   grid-gap: 10px;
-  margin-left: 450px;
+  margin-right: 450px;
+  margin-top: 80px;
   width: 600px;
   height: 600px;
   padding: 10px;
+  float:right;
+  
 }
 #score,#level {
   padding: 8px;
@@ -37,8 +40,14 @@
     background-color: #14ffbc;
 }
 .container {
-    display: flex;
+    margin-top:10%;
+    align-items: center;
+    display: table-row;
+    float:left
 }
+.container:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
 #quitBtn,#restartButton {
   padding: 8px;
   margin: 10px;
@@ -52,7 +61,7 @@
 }
 #quitBtn{
     width: 150px;
-  height: 70px;
+  
   font-weight: 36px;
   font-size: 20px;
 }
