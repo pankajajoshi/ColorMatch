@@ -41,11 +41,16 @@
   box-shadow: -2px 2px #afff14;
 }
 .block {
+    transform: scaleX(1) scaleY(0.9) scaleZ(3) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px) skewX(-1deg) skewY(0deg);
   width: 70px;
   height: 70px;
   border-radius: 10px;
   cursor: pointer;
 }
+.block-wrap {
+    perspective: 1000px;
+    perspective-origin: 46% 50%;
+  }
 /* end game modal */
 .end-game-modal {
   position:fixed;

@@ -22,5 +22,5 @@ typeText(
 //play Game
 startBtn.addEventListener("click", () => {
   // redirect to game.html
-  window.location.href = "html/game.html";
+  window.location.href = "html/game.html?level=level1";
 });

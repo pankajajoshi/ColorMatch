@@ -1,25 +1,30 @@
 const colors = ["red", "blue", "green", "yellow", "purple"];// Just basic colors stated 
-let oneBlockClicked = null;// Keeps track of first block clicked, its null because no block was clicked.It has to be let because it will changed.
-let otherBlockClicked = null;//Keeps track of second block clicked, its null because no block was clicked. It has to be let because it will changed.
 let score = 0;//intializing and creating  score to 0
 const scoreBoard = document.getElementById("score");//creating scoreBoard obect to hold id Score(html element by it id)
+const levelBoard = document.getElementById('level');
 const endGameModal = document.getElementById("endGameModal");//creating endGameModal obect to hold value of endGameModal html element by it's id
 const endGameModalTitle = document.getElementById("endGameModalTitle");//creating endGameModalTitle to hold id of endGameModalTitle
+
+const gameParams = new URLSearchParams(document.location.search);
+var level = gameParams.get('level') || 'level1';
+
+/*Update function will update score when the tiles are removed*/
 const updateScore = () => {
     scoreBoard.textContent = `Score: ${score}`;
     scoreBoard.style.color = "rgb(14, 52, 164)";
     scoreBoard.style.fontSize = "24px";
     scoreBoard.style.textAlign = "center";
-    
   };
+
+  /*Check winner function is called when score matches for the winner score and it calls for the end modal game to display winner message accordingly*/
   const checkWinner = () => {
     console.log('score is: ', score);
     if(score >= 3000) { 
         console.log('score is >=3000 ', score);
-   // if (document.querySelectorAll(".block").length === 0) {
+   
       openEndGameModal();
       displayEndGameMessage();
-      //updateScore();
+      
     } else {
         console.log('score is less than 3000, next check if user can play further');
         //check if any same blocks are remaining, if not show game over
@@ -30,11 +35,13 @@ const updateScore = () => {
     }
   };
   
-  const openEndGameModal = () => {
-    console.log('openEndGameModal');
-    endGameModal.classList.add("active");
-  };
+  /* opendendgamemodal will checks if the endgamemodal class is active*/
+    const openEndGameModal = () => {
+        console.log('openEndGameModal');
+        endGameModal.classList.add("active");
+    };
 
+    /*Display Endgame modal ,will diplay end message accordingly */
   const displayEndGameMessage = () => {
     console.log('displayEndGameMessage');
     let winnerSound = new Audio("../winsound.wav");
@@ -44,9 +51,20 @@ const updateScore = () => {
     if (document.querySelectorAll(".block").length === 0) {
       endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
     } else if(score >= 3000) {
-        
-      endGameModalTitle.textContent = `Awesome! you earned it! Now, on to next level!! `;
-     
+        var nextLvlButton = document.getElementById('nextLvlLink');
+        if(level == 'pro') {
+            nextLvlButton.style.display='none';
+            endGameModalTitle.textContent = `You Win !! Your Score : ${score}`;
+          }else {
+            endGameModalTitle.textContent = `Awesome! you earned it! Now, on to next level!! `;
+          }
+      if(level == 'level1'){
+        level='level2';
+      } else if(level== 'level2'){
+        level = 'pro';
+      }
+      
+      nextLvlButton.href = 'game.html?level='+level;
     } else {
         // this no more matches available to play further, end the game
         endGameModalTitle.textContent = `There are no matching blocks! Game over! `;
@@ -66,6 +84,8 @@ for (var i = 0; i < m; i++) {
 }
 
 let blocksToFill=0;
+
+/*checks if the adjecent neighbour tile has same color using 2d array once with row and column returns true if either is true */
 
 function areThereAnyMatchingBlocks() {
 
@@ -96,17 +116,92 @@ function areThereAnyMatchingBlocks() {
 
     return doesAnyRowHaveMatchingBlocks || doesAnyColumnHaveMatchingBlocks;
 }
+
+/* Create blocks in grid in rows and columns by pushing in the girdbox with random colors */
 function createBlocksInGrid(){
-    for (var x = 0; x < m; x++) {
-        box.push([]);
-        for (var y = 0; y < n; y++) {
-          box[x].push(getRandomColor());
+    //levelBoard.innerHTML = '<span class="lvlBoard">';
+    if(level == 'level1'){
+        levelBoard.textContent = 'Level 1' ;
+    } else if(level == 'level2') {
+        levelBoard.textContent = 'Level 2' ;
+    } else {
+        levelBoard.textContent = 'Pro' ;
+    }
+    //levelBoard.innerHTML = '</span>';
+   console.log(level);
+   // level1
+   if(level == 'level1'){
+    // simple pattern - pi
+        for (var x = 0; x < m; x++) {
+            box.push([]);
         }
-      }
-      renderBlocks(true);
+
+        
+        for (var x = 0; x < m; x++) {
+            for (var y = 0; y < n; y++) {
+                
+                    box[x][y] = "yellow";
+                
+            }
+        }
+
+        for (var x = 0; x < m; x++) {
+            box[1][x] = "red";
+        }
+
+        for (var x = 1; x < n-1; x++) {
+            box[x][2] = "red";
+
+        }
+
+        for (var x = 1; x < n-1; x++) {
+            box[x][4] = "red";
+        }
+
+   } else if(level == 'level2'){
+    // next pattern - O
+        for (var x = 0; x < m; x++) {
+            box.push([]);
+        }
+        
+        for (var x = 0; x < m; x++) {
+            for (var y = 0; y < n; y++) {
+                    box[x][y] = "yellow";
+            }
+        }
+
+        for (var x = 1; x < m-2; x++) {
+            box[1][x] = "red";
+        }
+
+        for (var x = 1; x < n-1; x++) {
+            box[x][1] = "red";
+
+        }
+
+        for (var x = 1; x < n-1; x++) {
+            box[x][5] = "red";
+        }
+
+        for (var x = 1; x < m-2; x++) {
+            box[5][x] = "red";
+        }
+
+   } else {
+    // pro
+        for (var x = 0; x < m; x++) {
+            box.push([]);
+            for (var y = 0; y < n; y++) {
+            box[x].push(getRandomColor());
+            }
+        }
+    }
+    
+    renderBlocks(true);
     // clearFallingClass();
 }
 
+/*Rendering tiles in the gridbox using id and creating div and append inside grid by using 2d array which gives location of each box*/
 function renderBlocks(firstTime) {
     const gridBox = document.getElementById("grid-box");
     gridBox.innerHTML='';
@@ -115,8 +210,8 @@ function renderBlocks(firstTime) {
         for(var y=0;y<n;y++){
             const block = document.createElement("div");
             block.id=x+"_"+y;
-            block.classList.add("block", box[x][y]); // block yellow falling
-            if(firstTime) block.classList.add("falling");
+            block.classList.add("block", box[x][y]); 
+            if(firstTime) block.classList.add("falling");// when falling for the first time it is falling format
             // add click event event listener with following data for future removal
             block.color=box[x][y];
             block.row=x;
@@ -129,15 +224,17 @@ function renderBlocks(firstTime) {
     }
 }
 
+/*creating random colors for the each div in th block*/
 function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
+/*Fuction Directs when block is clicked that event have to handel removing matching blocks by populating same color neighbous and assinging shake style to boxes*/ 
 function blockClicked(eventObj) {
     let blockCrush=new Audio("../blockmatchsound.wav");
     blockCrush.volume=0.2;
     blockCrush.play();
-    eventObj.preventDefault();
+    eventObj.preventDefault();//preventDefault() method of the Event interface tells the user agent that if the event does not get explicitly handled, its default action should not be taken as it normally would be.
     console.log('block clicked', eventObj.currentTarget.color, eventObj.currentTarget.row, eventObj.currentTarget.col);
     // if the blocks already have shaking, click on it should remove those blocks
     // but, if clicked else where - stop shaking and shake other selected blocks
@@ -148,6 +245,7 @@ function blockClicked(eventObj) {
     assignShakeStyleToBoxes(eventObj.currentTarget.color, sameColorNeighbors);
 }
 
+/*This Fuction will perform silding the blocks when empty space is formed by removing the same color blocks*/
 function slideBlocks() {
 console.log('blocks to fill ', blocksToFill);
 
@@ -180,6 +278,7 @@ while (blocksToFill > 0) {
   }
 }
 
+/* This Fuciton Removes the shaking same colors if yes removes the blocks and backfill it and it adds score update it and check if playe is won*/
 function removeShakingBlocks(evtObj) {
     var elems = document.querySelectorAll(".shaking");
     if(!hasClickedElseWhere(elems, evtObj)){
@@ -204,6 +303,7 @@ function removeShakingBlocks(evtObj) {
         console.log('clicked else where')
     }
 }
+
 
 function hasClickedElseWhere(elems, evtObj){
     console.log('evtObj: ',evtObj.color, '', evtObj.row, '', evtObj.col);
