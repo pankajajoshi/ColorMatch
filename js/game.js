@@ -11,9 +11,7 @@ var level = gameParams.get('level') || 'level1';
 /*Update function will update score when the tiles are removed*/
 const updateScore = () => {
     scoreBoard.textContent = `Score: ${score}`;
-    scoreBoard.style.color = "rgb(14, 52, 164)";
-    //scoreBoard.style.fontSize = "24px";
-    scoreBoard.style.textAlign = "center";
+    
   };
 
   /*Check winner function is called when score matches for the winner score and it calls for the end modal game to display winner message accordingly*/
@@ -128,9 +126,7 @@ function createBlocksInGrid(){
         levelBoard.textContent = 'Pro' ;
     }
 
-    levelBoard.style.color = "rgb(14, 52, 164)";
-    //levelBoard.style.fontSize = "24px";
-    //levelBoard.style.textAlign = "center";
+   
    console.log(level);
    // level1
    if(level == 'level1'){

@@ -23,12 +23,18 @@
   font-size:24px;
   text-align: center;
   border-radius: 8px;
-  background-color: #39ff14;
+ 
   font-weight: 36px;
   color: black;
   font-weight: bold;
   width: 150px;
   box-shadow: -2px 2px black;
+}
+#score{
+    background-color: #ffb814;
+}
+#level{
+    background-color: #14ffbc;
 }
 .container {
     display: flex;
