@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+
   </head>
 
   <body>
@@ -18,11 +19,13 @@
         </div>
         
         <div id="score"><h3>Score: 0</h3></div>
+        <div id="level"><h3>Level: 0</h3></div>
     </div>
-    <!-- <div class="allbuttons">
+    <!-- <div class="allbuttons">.
     <div><button class="startbutton">Start game</div>
       <div>
       </div> -->
+
     <div id="grid-box"></div>
     <footer id="footer">
         <p>
@@ -43,7 +46,8 @@
     <div class="end-game-modal" id="endGameModal">
          
         <p class="end-game-modal-title" id="endGameModalTitle"></p>
-        <a href="../html/game.html"><button class="restart-button" id="restartButton">Reset Again</button></a>
+        <a href="../html/game.html?level=level1"><button class="restart-button" id="restartButton">Reset Again</button></a>
+        <a href="../html/game.html" id="nextLvlLink"><button class="restart-button" id="restartButton">Level up</button></a>
       </div>
 
     <script defer src="../js/game.js"></script>
