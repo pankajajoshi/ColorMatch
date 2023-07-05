@@ -17,9 +17,11 @@
   height: 600px;
   padding: 10px;
 }
-#score {
+#score,#level {
   padding: 8px;
   margin: 10px;
+  font-size:24px;
+  text-align: center;
   border-radius: 8px;
   background-color: #39ff14;
   font-weight: 36px;
@@ -37,8 +39,20 @@
   border-radius: 8px;
   background-color: #39ff14;
   color: black;
+  font-weight: 36px;
   font-weight: bold;
-  box-shadow: -2px 2px #afff14;
+  box-shadow: -2px 2px black;
+  
+}
+#quitBtn{
+    width: 150px;
+  height: 70px;
+  font-weight: 36px;
+  font-size: 20px;
+}
+#quitBtn:hover,#restartButton:hover{
+    cursor: pointer;
+    background-color:rgb(71, 158, 195);
 }
 .block {
     transform: scaleX(1) scaleY(0.9) scaleZ(3) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(0px) translateZ(0px) skewX(-1deg) skewY(0deg);

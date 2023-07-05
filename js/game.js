@@ -12,7 +12,7 @@ var level = gameParams.get('level') || 'level1';
 const updateScore = () => {
     scoreBoard.textContent = `Score: ${score}`;
     scoreBoard.style.color = "rgb(14, 52, 164)";
-    scoreBoard.style.fontSize = "24px";
+    //scoreBoard.style.fontSize = "24px";
     scoreBoard.style.textAlign = "center";
   };
 
@@ -119,7 +119,7 @@ function areThereAnyMatchingBlocks() {
 
 /* Create blocks in grid in rows and columns by pushing in the girdbox with random colors */
 function createBlocksInGrid(){
-    //levelBoard.innerHTML = '<span class="lvlBoard">';
+   
     if(level == 'level1'){
         levelBoard.textContent = 'Level 1' ;
     } else if(level == 'level2') {
@@ -127,7 +127,10 @@ function createBlocksInGrid(){
     } else {
         levelBoard.textContent = 'Pro' ;
     }
-    //levelBoard.innerHTML = '</span>';
+
+    levelBoard.style.color = "rgb(14, 52, 164)";
+    //levelBoard.style.fontSize = "24px";
+    //levelBoard.style.textAlign = "center";
    console.log(level);
    // level1
    if(level == 'level1'){

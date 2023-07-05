@@ -16,7 +16,7 @@ let welcomeContainer = document.getElementById("gameMessage");
 welcomeContainer.appendChild(div);
 typeText(
   div,
-  `Welcome Player !!\n\nTo Play this COLOR MATCH GAME ,Match the Same Color Blocks \n\nWhen you clear all blocks YOU WIN!!!`,
+  `Welcome Player !!\n\nTo Play this COLOR MATCH GAME ,Match the Same Color Blocks \n\nClear Blocks and  HAVE FUN!!`,
   0
 );
 //play Game
