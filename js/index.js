@@ -13,14 +13,16 @@ const typeText = (div, message, len) => {
 // start screen and writer
 let div = document.createElement("div");
 let welcomeContainer = document.getElementById("gameMessage");
+let inputname=document.getElementById("inputname");
+
 welcomeContainer.appendChild(div);
 typeText(
   div,
   `Welcome Player !!\n\nTo Play this COLOR MATCH GAME ,Match the Same Color Blocks \n\nClear Blocks and  HAVE FUN!!`,
-  50
+0
 );
 //play Game
 startBtn.addEventListener("click", () => {
   // redirect to game.html
-  window.location.href = "html/game.html?level=level1";
+  window.location.href = "html/game.html?level=level1&name="+inputname.value;
 });

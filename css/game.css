@@ -13,25 +13,34 @@
   display: inline-grid;
   grid-gap: 10px;
   margin-right: 450px;
-  margin-top: 80px;
-  width: 600px;
-  height: 600px;
+  margin-top: 40px;
+  /* width: 600px;
+  height: 600px; */
   padding: 10px;
   float:right;
   
 }
 #score,#level {
-  padding: 8px;
+  padding: 10px;
   margin: 10px;
-  font-size:24px;
+  
   text-align: center;
   border-radius: 8px;
- 
+  font-size:24px;
   font-weight: 36px;
   color: black;
   font-weight: bold;
   width: 150px;
   box-shadow: -2px 2px black;
+}
+#welcomeBoard{
+    font-size:24px;
+    font-weight: 36px;
+    color: rgb(16, 25, 123);
+    font-weight: bold;
+    width: 150px;
+    padding:10px;
+    text-transform: uppercase; 
 }
 #score{
     background-color: #ffb814;
@@ -43,13 +52,13 @@
     margin-top:10%;
     align-items: center;
     display: table-row;
-    float:left
+    float:left;
 }
 .container:not(:last-child) {
     border-bottom: none; /* Prevent double borders */
   }
 #quitBtn,#restartButton {
-  padding: 8px;
+  padding: 10px;
   margin: 10px;
   border-radius: 8px;
   background-color: #39ff14;
@@ -135,7 +144,7 @@
     background-color: purple;
   }
   
-  .white,#grid-box {
+  html,.white,#grid-box {
     background-color: rgba(226, 223, 223, 0.971);
   }
 .white {

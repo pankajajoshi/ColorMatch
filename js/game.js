@@ -4,9 +4,10 @@ const scoreBoard = document.getElementById("score");//creating scoreBoard obect 
 const levelBoard = document.getElementById('level');
 const endGameModal = document.getElementById("endGameModal");//creating endGameModal obect to hold value of endGameModal html element by it's id
 const endGameModalTitle = document.getElementById("endGameModalTitle");//creating endGameModalTitle to hold id of endGameModalTitle
-
+const welcomeMsg =document.getElementById("welcomeBoard");//display message
 const gameParams = new URLSearchParams(document.location.search);
 var level = gameParams.get('level') || 'level1';
+var playerName=gameParams.get('name') || 'player';//index.html parameters from url passed from index.js
 
 /*Update function will update score when the tiles are removed*/
 const updateScore = () => {
@@ -50,6 +51,7 @@ const updateScore = () => {
       endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
     } else if(score >= 3000) {
         var nextLvlButton = document.getElementById('nextLvlLink');
+        var resetGameBtn = document.getElementById("resetGameBtn");
         if(level == 'pro') {
             nextLvlButton.style.display='none';
             endGameModalTitle.textContent = `You Win !! Your Score : ${score}`;
@@ -62,7 +64,8 @@ const updateScore = () => {
         level = 'pro';
       }
       
-      nextLvlButton.href = 'game.html?level='+level;
+      nextLvlButton.href = 'game.html?level='+level+'&name='+playerName;
+      resetGameBtn.href = resetGameBtn+'&name='+playerName;
     } else {
         // this no more matches available to play further, end the game
         endGameModalTitle.textContent = `There are no matching blocks! Game over! `;
@@ -117,6 +120,7 @@ function areThereAnyMatchingBlocks() {
 
 /* Create blocks in grid in rows and columns by pushing in the girdbox with random colors */
 function createBlocksInGrid(){
+    welcomeMsg.textContent='Welcome, '+playerName +'!!!';
    
     if(level == 'level1'){
         levelBoard.textContent = 'Level 1' ;
