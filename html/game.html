@@ -14,6 +14,7 @@
 
   <body>
     <div class="container">
+        <div id="welcomeBoard"></div>
         <div id="level"></div>
         
         <div id="score"><h3>Score: 0</h3></div>
@@ -45,13 +46,15 @@
           <i class="fab fa-linkedin"></i>
         </a>
       </footer>
+      <!-- changes added ontop class -->
     <div class="end-game-modal" id="endGameModal">
-         
+        <!-- changes added popup id -->
+        
         <p class="end-game-modal-title" id="endGameModalTitle"></p>
-        <a href="../html/game.html?level=level1"><button class="restart-button" id="restartButton">Reset Again</button></a>
+        <a href="../html/game.html?level=level1" id="resetGameBtn"><button class="restart-button" id="restartButton">Reset Again</button></a>
         <a href="../html/game.html" id="nextLvlLink"><button class="restart-button" id="restartButton">Level up</button></a>
-      </div>
-
+      
+    </div>
     <script defer src="../js/game.js"></script>
   </body>
 </html>
