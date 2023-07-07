@@ -57,7 +57,7 @@ const updateScore = () => {
       endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
     } else if(score >= 3000) {
        
-        var resetGameBtn = document.getElementById("resetGameBtn");
+       
         if(level == 'pro') {
             nextLvlButton.style.display='none';
             endGameModalTitle.textContent = `You Win !! Your Score : ${score}`;
@@ -72,7 +72,7 @@ const updateScore = () => {
       }
       
       nextLvlButton.href = 'game.html?level='+level+'&name='+playerName;
-    //   resetGameBtn.href = resetGameBtn.href+'&name='+playerName;
+   
     } else {
         // this no more matches available to play further, end the game
         endGameModalTitle.textContent = `There are no matching blocks! Game over! `;
