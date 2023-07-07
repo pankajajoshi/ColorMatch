@@ -38,6 +38,12 @@ const updateScore = () => {
     const openEndGameModal = () => {
         console.log('openEndGameModal');
         endGameModal.classList.add("active");
+        const gridBox = document.getElementById("grid-box");
+        gridBox.style.opacity=".4";
+        gridBox.style.filter="alpha(opacity = 50)";
+
+        
+        
     };
 
     /*Display Endgame modal ,will diplay end message accordingly */
@@ -46,15 +52,16 @@ const updateScore = () => {
     let winnerSound = new Audio("../winsound.wav");
     winnerSound.volume=0.2;
     winnerSound.play();
-    
+    var nextLvlButton = document.getElementById('nextLvlLink');
     if (document.querySelectorAll(".block").length === 0) {
       endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
     } else if(score >= 3000) {
-        var nextLvlButton = document.getElementById('nextLvlLink');
+       
         var resetGameBtn = document.getElementById("resetGameBtn");
         if(level == 'pro') {
             nextLvlButton.style.display='none';
             endGameModalTitle.textContent = `You Win !! Your Score : ${score}`;
+           
           }else {
             endGameModalTitle.textContent = `Awesome! you earned it! Now, on to next level!! `;
           }
@@ -65,14 +72,16 @@ const updateScore = () => {
       }
       
       nextLvlButton.href = 'game.html?level='+level+'&name='+playerName;
-      resetGameBtn.href = resetGameBtn+'&name='+playerName;
+    //   resetGameBtn.href = resetGameBtn.href+'&name='+playerName;
     } else {
         // this no more matches available to play further, end the game
         endGameModalTitle.textContent = `There are no matching blocks! Game over! `;
+        nextLvlButton.style.display='none';
     }
     endGameModalTitle.style.color = "rgb(14, 52, 164)";
     endGameModalTitle.style.fontSize = "24px";
     endGameModalTitle.style.textAlign = "center";
+  
     
   };
 
@@ -234,6 +243,9 @@ function getRandomColor() {
 
 /*Fuction Directs when block is clicked that event have to handel removing matching blocks by populating same color neighbous and assinging shake style to boxes*/ 
 function blockClicked(eventObj) {
+    if(endGameModal.classList.contains("active")){
+        return;
+    }
     let blockCrush=new Audio("../blockmatchsound.wav");
     blockCrush.volume=0.2;
     blockCrush.play();

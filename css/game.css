@@ -42,6 +42,7 @@
     padding:10px;
     text-transform: uppercase; 
 }
+
 #score{
     background-color: #ffb814;
 }
@@ -53,6 +54,7 @@
     align-items: center;
     display: table-row;
     float:left;
+   
 }
 .container:not(:last-child) {
     border-bottom: none; /* Prevent double borders */
@@ -92,7 +94,7 @@
 /* end game modal */
 .end-game-modal {
   position:fixed;
-  z-index: 1;
+  z-index: 999 !important;
   top: 12%;
   left: 50%;
   width: 350px;
@@ -111,13 +113,13 @@
 
 .end-game-modal.active {
   transform: translate(-50%, -50%) scale(1);
+  z-index: 9999 !important;
 }
 
 .end-game-modal-title {
   font-size: 18px;
   font-weight: bold;
-  /* color: var(--bisque); */
- 
+  
 }
 
 .red {
