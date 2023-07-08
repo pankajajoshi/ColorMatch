@@ -40,11 +40,11 @@ const updateScore = () => {
         endGameModal.classList.add("active");
         const gridBox = document.getElementById("grid-box");
         gridBox.style.opacity=".4";
-        gridBox.style.filter="alpha(opacity = 50)";
-
-        
-        
-    };
+        //  This works in IE 8 & 9 too 
+        //  ... but also 5, 6, 7 
+        // gridBox.style.filter="alpha(opacity = 50)";
+        gridBox.style.filter="blur(4px)";
+     };
 
     /*Display Endgame modal ,will diplay end message accordingly */
   const displayEndGameMessage = () => {
@@ -57,7 +57,7 @@ const updateScore = () => {
       endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
     } else if(score >= 3000) {
        
-       
+        //var resetGameBtn = document.getElementById("resetGameBtn");
         if(level == 'pro') {
             nextLvlButton.style.display='none';
             endGameModalTitle.textContent = `You Win !! Your Score : ${score}`;
@@ -72,7 +72,9 @@ const updateScore = () => {
       }
       
       nextLvlButton.href = 'game.html?level='+level+'&name='+playerName;
-   
+    //   if(!resetGameBtn.href.contains('&name')){
+    //     resetGameBtn.href = resetGameBtn.href+'&name='+playerName;
+    //   }
     } else {
         // this no more matches available to play further, end the game
         endGameModalTitle.textContent = `There are no matching blocks! Game over! `;
