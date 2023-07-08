@@ -5,7 +5,7 @@ const levelBoard = document.getElementById('level');
 const endGameModal = document.getElementById("endGameModal");//creating endGameModal obect to hold value of endGameModal html element by it's id
 const endGameModalTitle = document.getElementById("endGameModalTitle");//creating endGameModalTitle to hold id of endGameModalTitle
 const welcomeMsg =document.getElementById("welcomeBoard");//display message
-const gameParams = new URLSearchParams(document.location.search);
+const gameParams = new URLSearchParams(document.location.search);//URLSearchParams interface defines utility methods to work with the query string of a URL.Returns a URLSearchParams object instance.
 var level = gameParams.get('level') || 'level1';
 var playerName=gameParams.get('name') || 'player';//index.html parameters from url passed from index.js
 
@@ -34,7 +34,7 @@ const updateScore = () => {
     }
   };
   
-  /* opendendgamemodal will checks if the endgamemodal class is active*/
+  /* opendendgamemodal will show the endGameModal popup -once this is active we can not click on grid */
     const openEndGameModal = () => {
         console.log('openEndGameModal');
         endGameModal.classList.add("active");
@@ -172,6 +172,10 @@ function createBlocksInGrid(){
             box[x][4] = "red";
         }
 
+
+
+
+
    } else if(level == 'level2'){
     // next pattern - O
         for (var x = 0; x < m; x++) {
@@ -243,7 +247,7 @@ function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
-/*Fuction Directs when block is clicked that event have to handel removing matching blocks by populating same color neighbous and assinging shake style to boxes*/ 
+/*Fuction Directs when block is clicked that event have to handel removing matching blocks by populating same color neighbous and assinging shake style to blocks*/ 
 function blockClicked(eventObj) {
     if(endGameModal.classList.contains("active")){
         return;

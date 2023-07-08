@@ -199,7 +199,7 @@
   .fa-github:hover,
   .fa-linkedin:hover {
     transform: rotateY(360deg) scale(1.4);
-    color: greenyellow;
+    color: rgb(255, 47, 47);
   }
   
   .fa-heart{
