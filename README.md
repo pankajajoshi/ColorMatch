@@ -9,11 +9,12 @@ In this game, the objective is to match same-colored blocks by clicking on them.
 
 GAME PLAY LOOKS LIKE THIS:
 
-1=>This color match game begins with a welcome page that prompts the player to enter their name, which is then displayed at each level. 
+1=>This color match game begins with a welcome page that prompts the player to enter their name, which is then displayed at each level along with level info using parameter passing.
 2=>Once the player enters their name and begins playing, they are taken to the game page where levels 1 and 2 serve as sampler games to help players understand how the game works.
 3=>These levels involve only two colors and fixed patterns, giving players a clear glimpse of the game mechanics. 
 4=>Then PRo level blocks appear in random pattern and it takes few statergies to clear them or when points reaches to 3000 player will win.
-5=>When the patter reaches a point where no matches available then score is diplayed with no match message.
+5=>When the pattern reaches a point where no matches available then score is diplayed with no match message.
+
 
 References:
 1=>https://developer.mozilla.org/en-US/docs/Web
