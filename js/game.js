@@ -49,9 +49,7 @@ const updateScore = () => {
     /*Display Endgame modal ,will diplay end message accordingly */
   const displayEndGameMessage = () => {
     console.log('displayEndGameMessage');
-    let winnerSound = new Audio("../winsound.wav");
-    winnerSound.volume=0.2;
-    winnerSound.play();
+    
     var nextLvlButton = document.getElementById('nextLvlLink');
     if (document.querySelectorAll(".block").length === 0) {
       endGameModalTitle.textContent = `You've cleared all Blocks! You Win !! Your Score : ${score}`;
@@ -80,6 +78,9 @@ const updateScore = () => {
         endGameModalTitle.textContent = `There are no matching blocks! Game over! `;
         nextLvlButton.style.display='none';
     }
+    let winnerSound = new Audio("../winsound.wav");
+    winnerSound.volume=0.2;
+    winnerSound.play();
     endGameModalTitle.style.color = "rgb(14, 52, 164)";
     endGameModalTitle.style.fontSize = "24px";
     endGameModalTitle.style.textAlign = "center";
@@ -309,7 +310,7 @@ function removeShakingBlocks(evtObj) {
             box[el.row][el.col]='white';
             blocksToFill++;
             count++;
-            let blockCrush=new Audio("../matchbreak.wav");
+            let blockCrush=new Audio("../Menu_Select_00.wav");
             blockCrush.volume=0.2;
             blockCrush.play();
         });
