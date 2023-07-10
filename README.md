@@ -6,6 +6,13 @@ OBJECTIVE:
 
 In this game, the objective is to match same-colored blocks by clicking on them. Each block you match will earn you points, and the more blocks you match, the higher your score will be. However, you'll need to be strategic in your moves, as you can only match blocks that are adjacent to each other and have a clear path between them.With its colorful graphics, intuitive gameplay, and addictive nature, this game is perfect for players of all ages and skill levels.
 
+Programming Languages Used:
+
+Javascript
+Html
+CSS
+DOM Manipulations
+
 
 GAME PLAY LOOKS LIKE THIS:
 
@@ -25,6 +32,11 @@ STRETCH GOALS:
 1=>Design for 3D blocks.
 2=>More complex Pro level by adding more random falling blocks.
 3=>Move over blocks when mid grid is empty.
+
+GitHUB page Link:
+Try out the Game here in the below provided link.
+
+https://pankajajoshi.github.io/PK_ColorMatchGame/
 
 
 
