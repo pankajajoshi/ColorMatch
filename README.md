@@ -1,4 +1,4 @@
-<h1>COLOR MATCH</h1>h1>
+<h1>COLOR MATCH</h1>
 
 Experience the fun and excitement of matching same-colored blocks.This Challenging game will keep you Engaged and entertained for hours!
 
