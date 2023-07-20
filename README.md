@@ -1,4 +1,4 @@
-COLOR MATCH
+<h1>COLOR MATCH</h1>h1>
 
 Experience the fun and excitement of matching same-colored blocks.This Challenging game will keep you Engaged and entertained for hours!
 
@@ -21,6 +21,9 @@ GAME PLAY LOOKS LIKE THIS:
 3=>These levels involve only two colors and fixed patterns, giving players a clear glimpse of the game mechanics. 
 4=>Then PRo level blocks appear in random pattern and it takes few statergies to clear them or when points reaches to 3000 player will win.
 5=>When the pattern reaches a point where no matches available then score is diplayed with no match message.
+
+ScreenShot:
+<img src="Screenshot 2023-07-10 125842.png" />
 
 
 References:
