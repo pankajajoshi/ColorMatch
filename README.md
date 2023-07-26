@@ -39,6 +39,9 @@ STRETCH GOALS:
 GitHUB page Link:
 Try out the Game here in the below provided link.
 
+Netlify Link:
+https://pankaja.netlify.app
+
 https://pankajajoshi.github.io/PK_ColorMatchGame/
 
 
